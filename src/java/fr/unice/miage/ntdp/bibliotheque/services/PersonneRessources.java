@@ -5,8 +5,8 @@
  */
 package fr.unice.miage.ntdp.bibliotheque.services;
 
-import fr.unice.miage.ntdp.bibliotheque.Categorie;
-import fr.unice.miage.ntdp.bibliotheque.bean.CategorieFacade;
+import fr.unice.miage.ntdp.bibliotheque.Personne;
+import fr.unice.miage.ntdp.bibliotheque.bean.PersonneFacade;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -22,36 +22,36 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Jeremy
  */
-@Path("categorie")
-public class CategorieRessources extends CategorieFacade{
+@Path("personne")
+public class PersonneRessources extends PersonneFacade{
 
-    public CategorieRessources() {
+    public PersonneRessources() {
         super();
     }
     
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Categorie> getCategories(){
+    public List<Personne> getPersonnes(){
         return super.findAll();
     }
     @GET
     @Path("count")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String countCategorie(){
+    public String countPersonne(){
         return (super.count())+"";
     }
     
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Categorie getCategorie(@PathParam("id") Long id){
+    public Personne getPersonne(@PathParam("id") Long id){
             return super.find(id);
     }
     
     @GET
     @Path("{nbMin}/{nbMax}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Categorie> getCategoriesByRange(@PathParam("nbMin") int nbMin,@PathParam("nbMax") int nbMax){
+    public List<Personne> getPersonnesByRange(@PathParam("nbMin") int nbMin,@PathParam("nbMax") int nbMax){
         int tab[] = {nbMin,nbMax}; 
         return super.findRange(tab);
     }
@@ -59,18 +59,18 @@ public class CategorieRessources extends CategorieFacade{
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public String createCat(Categorie cat) {
-        super.create(cat);
-        return "Categorie créée";
+    public String createPersonne(Personne pers) {
+        super.create(pers);
+        return "Personne créée";
     }
  
     @PUT 
     @Path("{id}")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public String update(Categorie cat) {
-        super.edit(cat);
-        return "Categorie mise à jour";
+    public String update(Personne pers) {
+        super.edit(pers);
+        return "Personne mise à jour";
     }
     
     @DELETE 
@@ -78,6 +78,6 @@ public class CategorieRessources extends CategorieFacade{
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public String remove(@PathParam("id") int id) {
         super.remove(find(id));
-        return "Categorie supprimé";
+        return "Personne supprimée";
     }
 }

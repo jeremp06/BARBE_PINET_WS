@@ -11,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author edou
  */
+@Path("pretEJB")
 @Entity
 public class Pret implements Serializable {
     private static final long serialVersionUID = 1L;

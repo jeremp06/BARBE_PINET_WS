@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author edou
  */
 @Entity
+@Path("livreEJB")
 @NamedQuery(
     name="findByCategory",
     query="SELECT c FROM Livre c WHERE c.categorie = :categorie"

@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author edou
  */
 @Entity
+@Path("users")
 public class Users extends Personne implements Serializable {
   private static final long serialVersionUID = 1L;
     @Id
