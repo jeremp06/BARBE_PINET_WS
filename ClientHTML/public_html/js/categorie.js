@@ -23,7 +23,27 @@ var ViewModel = function (categories) {
     self.categories = ko.observableArray(ko.utils.arrayMap(categories, function (categorie) {
         return new Category(categorie);
     }));
-};
+    
+    self.remove = function(categorie){  
+                   //self.categories.remove(categorie);  
+                    $.ajax({  
+                        url: "http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie",  
+                        type: "DELETE",  
+                        contentType: "application/json",  
+                        headers: {  
+                        Accept : "application/json"  
+                    }  
+                    })  
+                            .success(function(data, status, jq) {  
+                        // alert(status);  
+                        self.categories.remove(categorie);  
+                    })  
+                            .error(function(jq, status, error) {  
+                        $(".error").text(JSON.stringify(status + " " + error));  
+  
+                    });  
+                }; 
+    };
 
 var getData = function () {
     $.ajax({
@@ -37,29 +57,12 @@ var getData = function () {
 //Elle est toujours appelée quand les données sont pretes et est appelée qu'une fois   
         ko.applyBindings(new ViewModel(data));
     }).error(function (jq, status, error) {
+        alert('erreu');
         $(".error").text(JSON.stringify(status + " " + error));
 
     });
 };
-self.remove = function (categorie) {
-    self.categories.remove(categorie);
-    $.ajax({
-        url: "http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie",
-        type: "DELETE",
-        contentType: "application/json",
-        headers: {
-            Accept: "application/json"
-        }
-    })
-            .success(function (data, status, jq) {
-                // alert(status);  
-                self.categories.remove(categorie);
-            })
-            .error(function (jq, status, error) {
-                $(".error").text(JSON.stringify(status + " " + error));
 
-            });
-};
 //self.update = function (categorie) {
 //    $.ajax({
 //        url: "http://localhost:8080/bibliotheque_ntdp/webresources/category",
