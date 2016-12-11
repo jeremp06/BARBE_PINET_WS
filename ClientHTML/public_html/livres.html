@@ -41,7 +41,7 @@
                             <input data-bind='value: titre' />  
                         </td>   
                         <td>  
-                            <input data-bind='value: categorie_id' />  
+                            <input data-bind='value: categorieident' />  
                         </td>  
                         <td>
                             <a href="#" data-bind="click: $parent.update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
@@ -60,15 +60,46 @@
         <br>
         <form class="form-horizontal">
             <div class="form-group">
-                <label for="nom" class="col-sm-2 control-label">Nom</label>
+                <label for="nom" class="col-sm-2 control-label">ISBN</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" data-bind="value: $root.nom">
+                    <input type="text" class="form-control" id="nom" data-bind="value: $root.isbn">
                 </div>
             </div>
             <div class="form-group">
-                <label for="description" class="col-sm-2 control-label">Description</label>
+                <label for="description" class="col-sm-2 control-label">Photo</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="description" data-bind="value: $root.description">
+                    <input type="text" class="form-control" id="description" data-bind="value: $root.photo">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="nom" class="col-sm-2 control-label">Published Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nom" data-bind="value: $root.publisheddate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Quantite</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" data-bind="value: $root.quantite">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nom" class="col-sm-2 control-label">Résumé</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nom" data-bind="value: $root.resume">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Titre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" data-bind="value: $root.titre">
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Categorie ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" data-bind="value: $root.categorieident">
                 </div>
             </div>
             <div class="form-group">
@@ -76,6 +107,7 @@
                     <button data-bind="click: $root.add" type="submit" class="btn btn-default">Enregistrer</button>
                 </div>
             </div>
+            
         </form>
     </div>
 </div>

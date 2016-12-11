@@ -5,7 +5,7 @@
  */
 
 var Category = function (categorie) {
-    this.id = ko.observable(categorie.id);
+    this.ident = ko.observable(categorie.ident);
     this.nom = ko.observable(categorie.nom);
     this.description = ko.observable(categorie.description);
 };
@@ -42,12 +42,12 @@ var ViewModelCategorie = function (categories) {
                         $(".error").text(JSON.stringify(status + " " + error));
                     });
         }
-    }
+    };
 
     self.remove = function (categorie) {
         self.categories.remove(categorie);
         $.ajax({
-            url: "http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie/" + categorie.id(),
+            url: "http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie/" + categorie.ident(),
             type: "DELETE",
             contentType: "application/json",
             headers: {
@@ -55,7 +55,7 @@ var ViewModelCategorie = function (categories) {
             }
         })
                 .success(function (data, status, jq) {
-                    ko.applyBindings(new ViewModelCategorie(data));
+                    getDataCategories();
                 })
                 .error(function (jq, status, error) {
                     $(".error").text(JSON.stringify(status + " " + error));
@@ -64,7 +64,7 @@ var ViewModelCategorie = function (categories) {
 
     self.update = function (categorie) {
         $.ajax({
-            url: 'http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie/' + categorie.id(),
+            url: 'http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.categorie/' + categorie.ident(),
             cache: false,
             type: 'PUT',
             contentType: 'application/json; charset=utf-8',
@@ -87,9 +87,8 @@ var getDataCategories = function () {
             Accept: "application/json"
         }
     }).success(function (data, status, jq) {
-        //Cette fonction indique à knockout d'appliquer les données aux éléments de la page   
-        //Elle est toujours appelée quand les données sont pretes et est appelée qu'une fois   
-        ko.applyBindings(new ViewModelCategorie(data));
+        elem = $.get('categories.html').body;
+        ko.applyBindings(new ViewModelCategorie(data), elem);
     }).error(function (jq, status, error) {
         $(".error").text(JSON.stringify(status + " " + error));
 

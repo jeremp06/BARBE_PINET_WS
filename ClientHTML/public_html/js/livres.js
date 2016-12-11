@@ -12,7 +12,7 @@ var Livre = function (livre) {
     this.quantite = ko.observable(livre.quantite);
     this.resume = ko.observable(livre.resume);
     this.titre = ko.observable(livre.titre);
-    this.categorieid = ko.observable(livre.categorie_id);
+    this.categorieident = ko.observable(livre.categorie_ident);
     this.ecritpar = ko.observable(livre.ecrit_par_id);
 };
 
@@ -20,7 +20,10 @@ var Livre = function (livre) {
  Cette function est le controlleur de la vue  
  Elle assure la communication entre la vue et le modèle, une sorte de pont quoi!  
  */
+var isbinding = false;
+var elem;
 var ViewModelLivre = function (livres) {
+    isbinding = true;
     var self = this;
     //représente la liste des catégories  
     //La fonction prend la réponse obtenue du serveur en paramètre  
@@ -31,7 +34,7 @@ var ViewModelLivre = function (livres) {
     }));
 
     self.add = function (livre) {
-        if (livre.nom !== "" && livre.description !== "") {
+        if (livre.titre !== "" && livre.resume !== "") {
             $.ajax({
                 url: 'http://localhost:8080/WS/webresources/fr.unice.miage.ntdp.bibliotheque.livre/',
                 cache: false,
@@ -48,7 +51,7 @@ var ViewModelLivre = function (livres) {
                         $(".error").text(JSON.stringify(status + " " + error));
                     });
         }
-    }
+    };
 
     self.remove = function (livre) {
         self.livres.remove(livre);
@@ -61,7 +64,7 @@ var ViewModelLivre = function (livres) {
             }
         })
                 .success(function (data, status, jq) {
-                    ko.applyBindings(new ViewModelLivre(data));
+                    getDataLivres();
                 })
                 .error(function (jq, status, error) {
                     $(".error").text(JSON.stringify(status + " " + error));
@@ -94,8 +97,12 @@ var getDataLivres = function () {
         }
     }).success(function (data, status, jq) {
         //Cette fonction indique à knockout d'appliquer les données aux éléments de la page   
-        //Elle est toujours appelée quand les données sont pretes et est appelée qu'une fois   
-        ko.applyBindings(new ViewModelLivre(data));
+        //Elle est toujours appelée quand les données sont pretes et est appelée qu'une fois 
+        if (!isbinding) {
+            elem = $.get('livres.html').body;
+            ko.applyBindings(new ViewModelLivre(data), elem);
+        }
+       
     }).error(function (jq, status, error) {
         $(".error").text(JSON.stringify(status + " " + error));
 

@@ -27,22 +27,22 @@ public class Categorie implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ident;
     private String nom; 
     private String description;
 
-    public Long getId() {
-        return id;
+    public Long getIdent() {
+        return ident;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdent(Long id) {
+        this.ident = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (ident != null ? ident.hashCode() : 0);
         return hash;
     }
 
@@ -53,7 +53,7 @@ public class Categorie implements Serializable {
             return false;
         }
         Categorie other = (Categorie) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.ident == null && other.ident != null) || (this.ident != null && !this.ident.equals(other.ident))) {
             return false;
         }
         return true;
@@ -61,7 +61,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "ht.edu.fds.mbds.android.bibliotheque.Categorie[ id=" + id + " ]";
+        return "ht.edu.fds.mbds.android.bibliotheque.Categorie[ id=" + ident + " ]";
     }
 
     public String getNom() {

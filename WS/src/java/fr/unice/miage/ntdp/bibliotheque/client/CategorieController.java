@@ -223,7 +223,7 @@ public class CategorieController implements Serializable {
             }
             if (object instanceof Categorie) {
                 Categorie o = (Categorie) object;
-                return getStringKey(o.getId());
+                return getStringKey(o.getIdent());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Categorie.class.getName());
             }
