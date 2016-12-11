@@ -62,6 +62,10 @@ and open the template in the editor.
   color: #e7e7e7;
 }
 
+.nav>li>a {
+    cursor : pointer;
+}
+
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #e7e7e7;
@@ -76,4 +80,24 @@ and open the template in the editor.
     color: #e7e7e7;
     background-color: #3394b7;
   }
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+
+.bs-callout-info {
+    border-left-color: #1b809e;
+}
+
+.blueTitle {
+    color: #337ab7;
 }
