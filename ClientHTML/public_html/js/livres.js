@@ -81,6 +81,7 @@ var ViewModelLivre = function (livres) {
         })
                 .success(function (data, status, jq) {
                     //self.livres.replace();
+                    $("#divdeps").dialog('open');
                 })
                 .error(function (jq, status, error) {
                     $(".error").text(JSON.stringify(status + " " + error));

@@ -9,9 +9,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
         <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
         <script src="js/categories.js" type="text/javascript"></script>
         <script src="js/livres.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script>
@@ -28,6 +31,17 @@ and open the template in the editor.
                         getDataLivres();
                     });
                 });
+
+                $("#divdeps").dialog({
+                    autoOpen: false,
+                    show: 'slide',
+                    resizable: false,
+                    position: 'center',
+                    stack: true,
+                    height: 'auto',
+                    width: 'auto',
+                    modal: true
+                });
             });
 
         </script>
@@ -36,6 +50,9 @@ and open the template in the editor.
 
     </head>
     <body>
+        <div id="divdeps" hidden="hidden">
+            La modification a bien été effectuée.
+        </div>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->

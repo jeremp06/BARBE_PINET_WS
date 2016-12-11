@@ -72,6 +72,7 @@ var ViewModelCategorie = function (categories) {
         })
                 .success(function (data, status, jq) {
                     //self.categories.replace();
+                    $("#divdeps").dialog('open');
                 })
                 .error(function (jq, status, error) {
                     $(".error").text(JSON.stringify(status + " " + error));

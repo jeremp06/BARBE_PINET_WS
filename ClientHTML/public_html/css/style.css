@@ -101,3 +101,12 @@ and open the template in the editor.
 .blueTitle {
     color: #337ab7;
 }
+
+
+.ui-dialog {
+padding: .2em;
+border:1px;
+top: 40%;
+left: 35%;
+ 
+}
